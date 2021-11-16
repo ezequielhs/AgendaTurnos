@@ -1,0 +1,75 @@
+﻿@using Agenda_B.ViewModels
+@using Agenda_B.Helpers 
+@model RegistracionViewModel
+
+@{
+    ViewData["Title"] = "Registrarse";
+}
+
+<div class="container border bg-light">
+    <h6>Registracion</h6>
+    <form asp-action="Registrarse">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="ConfirmacionPassword" class="control-label"></label>
+                <input asp-for="ConfirmacionPassword" class="form-control" />
+                <span asp-validation-for="ConfirmacionPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label asp-for="DNI" class="control-label"></label>
+                <input asp-for="DNI" class="form-control" />
+                <span asp-validation-for="DNI" class="text-danger"></span>
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="ObraSocial" class="control-label"></label>
+                <select asp-for="ObraSocial" class="form-control" asp-items="Html.GetEnumSelectList<ObraSocial>()"></select>
+                <span asp-validation-for="ObraSocial" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row col-4 offset-8 form-group">
+                <input type="submit" value="Finalizar" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">@Alias.VolverAlInicio</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

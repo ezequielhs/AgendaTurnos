@@ -1,0 +1,33 @@
+﻿@using Agenda_B.Helpers
+@model Agenda_B.Models.Prestacion
+
+@{
+    ViewData["Title"] = "SelectPrest";
+}
+
+<div class="container border bg-light">
+    <h4>Prestacion</h4>
+    <form asp-action="SeleccionarPrestacion">
+        <div class="row">
+            <div class="col-4 form-group">
+                <select name="prestacionId" id="prestacionId" class="form-control">
+                    @foreach (Prestacion pres in ViewBag.ListadoPrestaciones)
+                    {
+                        <option value="@pres.Id">@pres.Id -  @pres.Nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row col-4 offset-8">
+            <button type="submit" class="btn btn-outline-primary">Siguiente</button>
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">@Alias.VolverAlInicio</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

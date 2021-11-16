@@ -1,0 +1,8 @@
+﻿@model Agenda_B.Models.Direccion
+
+<address>
+    @Model.DireccionCompleta
+</address>
+<div>
+    <a asp-controller="Direcciones" asp-action="Edit" asp-route-id="@Model.Id">Modificar direccion</a>
+</div>

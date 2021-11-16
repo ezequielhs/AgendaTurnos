@@ -1,0 +1,33 @@
+﻿@model Agenda_B.Models.Profesional
+
+
+@{
+    ViewData["Title"] = "SelectProfesional";
+}
+
+<div class="container border bg-light">
+    <h4>Profesionales</h4>
+    <form asp-action="SeleccionarProfesional">
+        <div class="row">
+            <div class="col-4 form-group">
+                <select name="profesionalId" id="profesionalId" class="form-control">
+                    @foreach (Profesional prof in ViewBag.profesionales)
+                    {
+                        <option value="@prof.Id">@prof.NombreCompleto</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row col-4 offset-8">
+            <button type="submit" class="btn btn-outline-primary">Siguiente</button>
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-controller="Turnos" asp-action="SeleccionarPrestacion">Atras</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

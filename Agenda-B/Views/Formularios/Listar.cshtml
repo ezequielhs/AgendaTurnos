@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Agenda_B.Models.Formulario>
+
+<h6>Consultas</h6>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Leido)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Leido)
+            </td>
+
+            <td>
+                <a class="btn btn-sm btn-outline-primary" role="button" asp-controller="Formularios" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

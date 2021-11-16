@@ -1,0 +1,77 @@
+﻿@model Agenda_B.Models.Paciente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container border bg-light">
+    <h6>Datos personales</h6>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Modificar datos personales</a>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Nombre): </strong> @Html.DisplayFor(model => model.NombreCompleto)</p>
+        </div>
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Email): </strong> @Html.DisplayFor(model => model.Email)</p>
+        </div>
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.DNI): </strong> @Html.DisplayFor(model => model.DNI)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Telefono): </strong> @Html.DisplayFor(model => model.Telefono)</p>
+        </div>
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.ObraSocial): </strong> @Html.DisplayFor(model => model.ObraSocial)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>
+                <strong>@Html.DisplayNameFor(model => model.Direccion): </strong>
+
+                @if (Model.Direccion != null)
+                {
+                    @Html.Partial("~/Views/Direcciones/Details.cshtml", Model.Direccion);
+                }
+                else
+                {
+                    <address>No tiene asignada una direccion.</address>
+                }
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-8">
+            @{
+                if (Model.Turnos != null && Model.Turnos.Count() != 0)
+                {
+                    @Html.Partial("~/Views/Turnos/Listar.cshtml", Model.Turnos);
+                }
+                else
+                {
+                    <a>No hay turnos asignados.</a>
+                }
+            }
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-8">
+            @{
+                if (Model.Formularios != null && Model.Formularios.Count() != 0)
+                {
+                    @Html.Partial("~/Views/Formularios/Listar.cshtml", Model.Formularios);
+                }
+                else
+                {
+                    <a>No tiene ninguna consulta.</a>
+                }
+            }
+        </div>
+    </div>
+</div>

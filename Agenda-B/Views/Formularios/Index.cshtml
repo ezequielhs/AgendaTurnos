@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Agenda_B.Models.Formulario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Formularios</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo Formulario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leido)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Mensaje)
+        </th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leido)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Mensaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+        </td>*@
+        <td>
+            <a class="btn btn-primary" role="button" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+        </td>
+        </tr>
+}
+    </tbody>
+</table>

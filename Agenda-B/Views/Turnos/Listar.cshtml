@@ -1,0 +1,64 @@
+﻿@using Agenda_B.Helpers
+@model IEnumerable<Agenda_B.Models.Turno>
+
+<h6>Turnos</h6>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            @if (this.User.IsInRole(Constantes.ROL_NOMBRE_PACIENTE))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Profesional)
+                </th>
+            }
+            else if (this.User.IsInRole(Constantes.ROL_NOMBRE_PROFESIONAL))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Paciente)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.Confirmado)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                @if (this.User.IsInRole(Constantes.ROL_NOMBRE_PACIENTE))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profesional.NombreCompleto)
+                    </td>
+                }
+                else if (this.User.IsInRole(Constantes.ROL_NOMBRE_PROFESIONAL))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmado)
+                </td>
+                <td>
+                    @if (item.Confirmado && (item.Fecha - DateTime.Now.AddHours(Constantes.HORAS_PERMITIDAS_CANCELAR)).TotalHours > 0)
+                {
+                    <a class="btn btn-sm btn-outline-danger" role="button" asp-controller="Turnos" asp-action="Cancelar" asp-route-id="@item.Id">Cancelar</a>
+                }
+                @*else
+                {
+                    <a class="btn btn-sm btn-outline-success" role="button" asp-controller="Turnos" asp-action="Confirmar" asp-route-id="@item.Id">Confirmar</a>
+                }*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

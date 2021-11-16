@@ -1,0 +1,62 @@
+﻿@using Agenda_B.Helpers
+@model Agenda_B.Models.Formulario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container border bg-light">
+    <h6>Consulta</h6>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (!this.User.Identity.IsAuthenticated)
+        {
+            <div class="row">
+                <div class="col-4 form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-group">
+                    <label asp-for="Apellido" class="control-label"></label>
+                    <input asp-for="Apellido" class="form-control" />
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <input type="hidden" name="Nombre" asp-for="Nombre" />
+            <input type="hidden" name="Apellido" asp-for="Apellido" />
+            <input type="hidden" name="Email" asp-for="Email" />
+            <input type="hidden" name="PacienteId" asp-for="PacienteId" />            
+        }
+        <div class="row col-4 form-group">
+            <label asp-for="Titulo" class="control-label"></label>
+            <input asp-for="Titulo" class="form-control" />
+            <span asp-validation-for="Titulo" class="text-danger"></span>
+        </div>
+        <div class="row col-10 form-group">
+            <label asp-for="Mensaje" class="control-label"></label>
+            <textarea asp-for="Mensaje" class="form-control" rows="10">Escriba aquí el mensaje</textarea>
+            <span asp-validation-for="Mensaje" class="text-danger"></span>
+            <p>Máximo 500 caracteres.</p>
+        </div>
+        <div class="row col-4 offset-10 form-group">
+            <input type="submit" value="Enviar consulta" class="btn btn-outline-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">@Alias.VolverAlInicio</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

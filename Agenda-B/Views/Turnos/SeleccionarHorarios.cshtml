@@ -1,0 +1,44 @@
+﻿@using Agenda_B.ViewModels
+@model TurnoDisponibleViewModel
+
+@{
+    ViewData["Title"] = "Select Horarios";
+}
+
+<div class="container border bg-light">
+    <h6>Detalles del turno</h6>
+        <form asp-action="SeleccionarHorarios">
+            <input type="hidden" name="ProfesionalId" asp-for="Profesional.Id" />
+            <input type="hidden" name="PacienteId" asp-for="PacienteId" />
+            <ul>
+                <li>
+                    @Html.DisplayNameFor(model => model.Profesional.NombreCompleto):  @Html.DisplayFor(model => model.Profesional.NombreCompleto)
+                </li>
+                <li>
+                    @Html.DisplayNameFor(model => model.Prestacion.Nombre):  @Html.DisplayFor(model => model.Prestacion.Nombre)
+                </li>
+                <li>
+                    @Html.DisplayNameFor(model => model.Prestacion.Duracion):  @Html.DisplayFor(model => model.Prestacion.Duracion)
+                </li>
+            </ul>
+            <div class="row col-8 form-group">
+                <lavel>Elija uno de los turnos disponibles</lavel>
+                <select name="fechaTurno" id="fechaTurno" class="form-control">
+                    @foreach (DateTime fecha in Model.FechasDisponibles)
+                    {
+                        <option value="@fecha">@fecha</option>
+                    }
+                </select>
+            </div>
+            <div class="row col-4 offset-8">
+                <button type="submit" class="btn btn-outline-primary">Reservar turno</button>
+            </div>
+        </form>
+</div>
+<div>
+    <a asp-controller="Turnos" asp-action="SeleccionarProfesional" asp-route-prestacionId="@Model.Prestacion.Id">Atras</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

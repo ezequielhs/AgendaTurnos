@@ -1,0 +1,25 @@
+﻿@model Agenda_B.Models.Turno
+
+@{
+    ViewData["Title"] = "Cancelar";
+}
+
+<div class="container border bg-light">
+    <h4>Cancelar turno</h4>
+    <form asp-action="Cancelar">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="DescripcionCancelacion" class="control-label"></label>
+            <textarea asp-for="DescripcionCancelacion" class="form-control" ></textarea>
+            <span asp-validation-for="DescripcionCancelacion" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Cancelar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

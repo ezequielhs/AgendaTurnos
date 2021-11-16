@@ -1,0 +1,56 @@
+﻿@model Agenda_B.Models.Direccion
+
+@{
+    ViewData["Title"] = "Create";
+
+
+
+}
+
+<div class="container border bg-light">
+    <h6>Direccion</h6>
+    <form asp-action="Create">
+        @* <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Id"></select>
+            </div>*@
+        <input asp-for="Id" class="form-control" type="hidden" value="@ViewBag.pacienteId">
+        <div class="row">
+            <div class="col-4 form-group">
+                <label asp-for="Provincia" class="control-label"></label>
+                <select asp-for="Provincia" class="form-control" asp-items="Html.GetEnumSelectList<Provincia>()"></select>
+                <span asp-validation-for="Provincia" class="text-danger"></span>
+            </div>
+            <div class="col-4 form-group">
+                <label asp-for="Localidad" class="control-label"></label>
+                <input asp-for="Localidad" class="form-control" />
+                <span asp-validation-for="Localidad" class="text-danger"></span>
+            </div>
+            <div class="col-4 form-group">
+                <label asp-for="CodigoPostal" class="control-label"></label>
+                <input asp-for="CodigoPostal" class="form-control" />
+                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 form-group">
+                <label asp-for="Calle" class="control-label"></label>
+                <input asp-for="Calle" class="form-control" />
+                <span asp-validation-for="Calle" class="text-danger"></span>
+            </div>
+            <div class="col-4 form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row col-4 offset-8 form-group">
+            <input type="submit" value="Finalizar" class="btn btn-outline-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

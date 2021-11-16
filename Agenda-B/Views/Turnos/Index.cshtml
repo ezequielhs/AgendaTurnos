@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Agenda_B.Models.Turno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Turnos</h1>
+
+<p>
+    <a asp-action="SeleccionarPrestacion">Crear nuevo Turno</a>
+</p>
+@if (Model.Count() != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Paciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Profesional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Confirmado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profesional.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <a class="btn btn-primary" role="button" asp-action="Confirmar" asp-route-id="@item.Id">Confirmar</a> |
+                    <a class="btn btn-primary" role="button" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a class="btn btn-danger" role="button" asp-action="Cancelar" asp-route-id="@item.Id">Cancelar</a>
+                </td>
+            </tr>
+    }
+
+
+
+        </tbody>
+    </table>
+}
+else { 
+    <p>
+        No se registran turnos para usted.
+    </p>
+}
+
+
+<asp:dropdownlist runat="server" id="ddlTest">
+    <asp:listitem text="Red" value="1"></asp:listitem>
+    <asp:listitem text="Black" value="2"></asp:listitem>
+    <asp:listitem text="Blue" value="3"></asp:listitem>
+    <asp:listitem text="Green" value="4"></asp:listitem>
+    <asp:listitem text="Yellow" value="5"></asp:listitem>
+</asp:dropdownlist>
