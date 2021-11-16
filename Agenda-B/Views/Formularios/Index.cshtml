@@ -1,16 +1,13 @@
-﻿@model IEnumerable<Agenda_B.Models.Formulario>
+﻿@using Agenda_B.Helpers
+@model IEnumerable<Agenda_B.Models.Formulario>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Formularios</h1>
-
-<p>
-    <a asp-action="Create">Crear nuevo Formulario</a>
-</p>
+<h6>Formularios</h6>
 <table class="table">
-    <thead>
+    <thead class="thead-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
@@ -27,43 +24,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.Leido)
             </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.Mensaje)
-        </th>*@
-            @*<th>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </th>*@
-            <th></th>
+            <th>@Alias.Acciones</th>
         </tr>
     </thead>
     <tbody>
-            @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Leido)
-            </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Mensaje)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Apellido)
-        </td>*@
-        <td>
-            <a class="btn btn-primary" role="button" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
-        </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Leido)
+                </td>
+                <td>
+                    @if (!item.Leido)
+                    {
+                        <a class="btn btn-outline-primary" role="button"  asp-action="Leer" asp-route-id="@item.Id">Leer</a>
+                    }
+                    <a class="btn btn-outline-primary" role="button" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

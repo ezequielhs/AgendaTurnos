@@ -26,24 +26,20 @@ namespace Agenda_B.Controllers
             _userManager = userManager;
 
         }
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public IActionResult Index()
         {
             List<Turno> turnos;
-            if (this.User.IsInRole(Constantes.ROL_NOMBRE_ADMIN)) {
-                turnos = _context.Turnos.Include(t => t.Paciente).Include(t => t.Profesional).ToList();
-            }
-            else if(this.User.IsInRole(Constantes.ROL_NOMBRE_PROFESIONAL))
-            {
-                int profesionalId = int.Parse(_userManager.GetUserId(this.User));
-                turnos = _context.Turnos.Where(t => t.ProfesionalId == profesionalId).Include(t => t.Paciente).Include(t => t.Profesional).ToList();
-            }
-            else
-            {
-                int pacienteId = int.Parse(_userManager.GetUserId(this.User));
-                turnos = _context.Turnos.Where(t => t.PacienteId == pacienteId).Include(t => t.Paciente).Include(t => t.Profesional).ToList();
-            }
+                turnos = _context.Turnos
+                    .Include(t => t.Paciente)
+                    .Include(t => t.Profesional)
+                    .Where(turno => turno.Fecha >= DateTime.Now && turno.Cancelado == false)
+                    .OrderBy(t => t.Fecha).ToList();
+            
             return View(turnos);
         }
+
+        
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -204,7 +200,7 @@ namespace Agenda_B.Controllers
         }
 
 
-        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN + "," + Constantes.ROL_NOMBRE_PROFESIONAL + "," + Constantes.ROL_NOMBRE_PACIENTE)]
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN + "," + Constantes.ROL_NOMBRE_PROFESIONAL)]
         public async Task<IActionResult> Confirmar(int? id)
         {
             if (id == null)
@@ -219,8 +215,8 @@ namespace Agenda_B.Controllers
             }
 
             try
-            {
-                turno.Confirmado = true;
+            {               
+                turno.Confirmado = true;                                         
                 _context.Update(turno);
                 await _context.SaveChangesAsync();
             }
@@ -235,7 +231,7 @@ namespace Agenda_B.Controllers
                     throw;
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Turnos");           
         }
 
 
@@ -286,7 +282,7 @@ namespace Agenda_B.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Turnos");
             }
             return View(turno);
         }
@@ -327,6 +323,57 @@ namespace Agenda_B.Controllers
             return View(turno);
         }
 
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
+        public IActionResult Cancelados()
+        {
+            List<Turno> turnosCancelados;
+            turnosCancelados = _context.Turnos
+                .Include(t => t.Paciente)
+                .Include(t => t.Profesional)
+                .Where(turno => turno.Fecha >= DateTime.Now && turno.Cancelado == true)
+                .OrderBy(t => t.Fecha).ToList();
+
+            return View(turnosCancelados);
+        }
+
+
+
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
+        public IActionResult Activar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var turno = _context.Turnos.Find(id);
+            if (turno == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                if(!_context.Turnos.Where(t => t.PacienteId == turno.PacienteId).Any(t => t.Activo))
+                {
+                    turno.Activo = true;
+                    _context.Update(turno);
+                    _context.SaveChanges();
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TurnoExists(turno.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Index", "Turnos");
+        }
         private bool TurnoExists(int id)
         {
             return _context.Turnos.Any(e => e.Id == id);

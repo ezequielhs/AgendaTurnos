@@ -13,7 +13,7 @@ namespace Agenda_B.Models
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [DataType(DataType.DateTime, ErrorMessage = MsjsError.ErrDataTypeDateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy h:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy h:mm}")]
         [Display(Name = Alias.FechaTurno)]
         public DateTime Fecha { get; set; }
 
@@ -46,5 +46,16 @@ namespace Agenda_B.Models
         {
             return Fecha.ToString() + ", " + persona.NombreCompleto;
         }
+
+        public bool TurnoCancelable
+        {
+            get
+            {
+                return this.Confirmado && 
+                    (this.Fecha - DateTime.Now.AddHours(Constantes.HORAS_PERMITIDAS_CANCELAR)).TotalHours > 0;
+            }
+        }
+
+        
     }
 }

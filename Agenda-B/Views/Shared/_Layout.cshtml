@@ -25,15 +25,11 @@
                             {
                                 @if (this.User.IsInRole("Administrador"))
                                 {
-
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Profesionales" asp-action="Index">Profesionales</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Prestaciones" asp-action="Index">Prestaciones</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
@@ -42,10 +38,10 @@
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Turnos" asp-action="Index">Turnos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Direcciones" asp-action="Index">Direcciones</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Prestaciones" asp-action="Index">Prestaciones</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Formularios" asp-action="Index">Formularios</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Formularios" asp-action="Index">Consultas</a>
                                     </li>
                                 }
                                 else if (this.User.IsInRole("Paciente"))
@@ -65,15 +61,6 @@
                                 {
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Prestaciones" asp-action="Index">Prestaciones</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Turnos" asp-action="Index">Mis Turnos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Formularios" asp-action="Index">Formularios</a>
                                     </li>
                                 }
                                 <li>

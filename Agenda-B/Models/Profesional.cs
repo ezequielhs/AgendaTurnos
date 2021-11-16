@@ -35,16 +35,44 @@ namespace Agenda_B.Models
                 List<DateTime> turnos = new List<DateTime>();
                 DateTime horario = this.HoraInicio;
 
-                do
-                    {
-                        turnos.Add(horario);
-                        horario = horario.Add(this.Prestacion.Duracion);
-                    } while (horario <= this.HoraFin);
-
+                if (this.Prestacion != null)
+                {
+                    do
+                        {
+                            turnos.Add(horario);
+                            horario = horario.Add(this.Prestacion.Duracion);
+                        } while (horario <= this.HoraFin);
+                }
                 return turnos;
             }
         }
-            
+
+        [Display(Name = Alias.TurnosTomados)]
+        public int TurnosMes
+        {
+            get
+            {
+                if(this.Turnos != null)
+                {
+                    return this.Turnos.Where(t => t.Fecha.Month == DateTime.Now.Month && t.Confirmado).Count();
+                }
+                return 0;
+            }
+        }
+
+        [Display(Name = Alias.Sueldo)]
+        public decimal SueldoMensual
+        {
+            get
+            {
+                if(this.Prestacion != null)
+                {
+                    return this.TurnosMes * this.Prestacion.Precio;
+                }
+                return 0;
+            }
+        }
+
         public List<Turno> Turnos { get; set; }
 
     }

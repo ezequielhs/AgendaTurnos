@@ -1,0 +1,74 @@
+﻿@using Agenda_B.Helpers
+@model IEnumerable<Agenda_B.Models.Turno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h6>Turnos Cancelados</h6>
+<div class="container border bg-light">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Paciente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Profesional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Confirmado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cancelado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescripcionCancelacion)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profesional.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cancelado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionCancelacion)
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+<a class="btn btn-sm btn-sm btn-outline-dark mt-2" role="button" asp-controller="Turnos" asp-action="Index">Regresar a Turnos</a>
+

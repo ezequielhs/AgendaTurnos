@@ -37,7 +37,7 @@ namespace Agenda_B.Data
         {
             Persona admin = new Persona()
             {
-                Nombre = "Martin",
+                Nombre = "Martín",
                 Apellido = "Zbinden",
                 Email = Constantes.DEFAULT_ADMIN_USERNAME,
                 UserName = Constantes.DEFAULT_ADMIN_USERNAME
@@ -96,7 +96,7 @@ namespace Agenda_B.Data
 
                 prestaciones.Add(new Prestacion()
                 {
-                    Nombre = "Médico kinesiologo",
+                    Nombre = "Médico kinesiólogo",
                     Descripcion = "Clínica especializada",
                     Duracion = new TimeSpan(3, 0, 0),
                     Precio = 4000
@@ -104,7 +104,7 @@ namespace Agenda_B.Data
 
                 prestaciones.Add(new Prestacion()
                 {
-                    Nombre = "Médico ortodonsista",
+                    Nombre = "Médico ortodoncista",
                     Descripcion = "Clínica especializada",
                     Duracion = new TimeSpan(1, 30, 0),
                     Precio = 3000
@@ -146,7 +146,7 @@ namespace Agenda_B.Data
                 pacientes.Add(new Paciente()
                 {
                     ObraSocial = ObraSocial.MEDICUS,
-                    Nombre = "Matias",
+                    Nombre = "Matías",
                     Apellido = "Lopez",
                     DNI = "36520120",
                     Email = "matias-lopez15@hotmail.com",
@@ -281,7 +281,7 @@ namespace Agenda_B.Data
                 direcciones.Add(new Direccion
                 {
                     Id = personas[2].Id,
-                    Calle = "Mexico",
+                    Calle = "México",
                     Numero = "320",
                     CodigoPostal = "1160",
                     Localidad = "San Telmo",
@@ -373,7 +373,7 @@ namespace Agenda_B.Data
                     Nombre = pacientes[1].Nombre,
                     Apellido = pacientes[1].Apellido,
                     Titulo = "Consulta",
-                    Mensaje = "Buenas tardes Doctor, como esta? Para cuando estarian mis estudios?.",
+                    Mensaje = "Buenas tardes Doctor, como esta? Para cuando estarían mis estudios?.",
                     PacienteId = pacientes[1].Id,
                 });
 
@@ -383,7 +383,7 @@ namespace Agenda_B.Data
                     Nombre = pacientes[2].Nombre,
                     Apellido = pacientes[2].Apellido,
                     Titulo = "Consulta",
-                    Mensaje = "Buen dia Doctor, perdon las molestias. Queria consultarte si hay turnos disponibles para la semana que viene. Saludos.",
+                    Mensaje = "Buen día Doctor, perdón las molestias. Quería consultarle si hay turnos disponibles para la semana que viene. Saludos.",
                     PacienteId = pacientes[2].Id,
                 });
 
@@ -393,7 +393,7 @@ namespace Agenda_B.Data
                     Nombre = pacientes[3].Nombre,
                     Apellido = pacientes[3].Apellido,
                     Titulo = "Aviso y Consulta",
-                    Mensaje = "Doctor, buenos dias. Ya tengo los estudios realizados, como procedemos con la operacion de vesicula? Saludos.",
+                    Mensaje = "Doctor, buenos días. Ya tengo los estudios realizados, como procedemos con la operacion de vesícula? Saludos.",
                     PacienteId = pacientes[3].Id,
                 });
                 _context.Formularios.AddRange(formularios);

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Agenda_B.Data;
 using Agenda_B.Models;
+using Microsoft.AspNetCore.Authorization;
+using Agenda_B.Helpers;
 
 namespace Agenda_B.Controllers
 {
@@ -19,13 +21,13 @@ namespace Agenda_B.Controllers
             _context = context;
         }
 
-        // GET: Prestaciones
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Prestaciones.ToListAsync());
         }
 
-        // GET: Prestaciones/Details/5
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,17 +47,15 @@ namespace Agenda_B.Controllers
             return View(prestacion);
         }
 
-        // GET: Prestaciones/Create
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public IActionResult Create()
         {
-            return View();
+            return View(new Prestacion());
         }
 
-        // POST: Prestaciones/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Duracion,Precio")] Prestacion prestacion)
         {
             if (ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace Agenda_B.Controllers
             return View(prestacion);
         }
 
-        // GET: Prestaciones/Edit/5
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,11 +85,9 @@ namespace Agenda_B.Controllers
             return View(prestacion);
         }
 
-        // POST: Prestaciones/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Duracion,Precio")] Prestacion prestacion)
         {
             if (id != prestacion.Id)
@@ -120,7 +118,7 @@ namespace Agenda_B.Controllers
             return View(prestacion);
         }
 
-        // GET: Prestaciones/Delete/5
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,9 +136,9 @@ namespace Agenda_B.Controllers
             return View(prestacion);
         }
 
-        // POST: Prestaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var prestacion = await _context.Prestaciones.FindAsync(id);

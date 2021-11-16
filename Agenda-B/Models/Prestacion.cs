@@ -17,10 +17,11 @@ namespace Agenda_B.Models
         
         [MaxLength(Restricciones.StrMax3, ErrorMessage = MsjsError.ErrMaximo)]
         public String Descripcion { get; set; }
-        
-        [DataType(DataType.Time, ErrorMessage = MsjsError.ErrNoValido)]
+
         [Required(ErrorMessage = MsjsError.ErrRequired)]
-        public TimeSpan Duracion { get; set; }
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm\:ss}", ApplyFormatInEditMode = true)]
+        [RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = MsjsError.ErrDataTypeDateTime)]
+        public TimeSpan Duracion { get; set; } = new TimeSpan(0, 0, 0);
         
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [Range(Restricciones.MinValue2, Restricciones.MaxValue1, ErrorMessage = MsjsError.ErrMinMax)]

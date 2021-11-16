@@ -13,7 +13,6 @@ using Agenda_B.Helpers;
 namespace Agenda_B
 {
 
-    [Authorize (Roles = "Administrador, Paciente")]
     public class DireccionesController : Controller
     {
         private readonly AgendaContext _context;

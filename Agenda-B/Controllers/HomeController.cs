@@ -27,6 +27,12 @@ namespace Agenda_B.Controllers
                 int idPaciente = int.Parse(_userManager.GetUserId(this.User));
                 return RedirectToAction("Details", "Pacientes", new { id = idPaciente});
             }
+
+            if (this.User.IsInRole("Profesional")) {
+                int idProfesional = int.Parse(_userManager.GetUserId(this.User));
+                return RedirectToAction("Details", "Profesionales", new { id = idProfesional });
+            }
+
             return View();
         }
 

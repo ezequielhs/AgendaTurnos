@@ -4,57 +4,44 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Detalles</h1>
-
-<div>
-    <h4>Prestacion</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duracion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duracion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-    </dl>
-</div>
-
-<div>
-    <h4>@Html.DisplayNameFor(Model => Model.Profesionales)</h4>
-    <hr />
-    @{
-        @if (Model.Profesionales.Count() != 0)
-        {
-            @foreach (Profesional p in Model.Profesionales)
+<div class="container border bg-light">
+    <h6>Detalles</h6>
+    <hr/>
+    <div class="row">
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Nombre): </strong> @Html.DisplayFor(model => model.Nombre)</p>
+        </div>
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Descripcion): </strong> @Html.DisplayFor(model => model.Descripcion)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Duracion): </strong> @Html.DisplayFor(model => model.Duracion)</p>
+        </div>
+        <div class="col-4">
+            <p> <strong>@Html.DisplayNameFor(model => model.Precio): </strong> @Html.DisplayFor(model => model.Precio)</p>
+        </div>
+    </div>
+    <div class="row">
+        <h6>@Html.DisplayNameFor(Model => Model.Profesionales)</h6>
+        <hr />
+    </div>
+        @{
+            @if (Model.Profesionales.Count() != 0)
             {
-                <li><a asp-controller="Profesionales" asp-action="Details" asp-route-id="@p.Id">@p.NombreCompleto</a></li>
+                @foreach (Profesional p in Model.Profesionales)
+                {
+                    <li><a asp-controller="Profesionales" asp-action="Details" asp-route-id="@p.Id">@p.NombreCompleto</a></li>
+                }
+            }
+            else
+            {
+                <a>Ningun Profesional tiene asignada esta Prestacion. </a>
             }
         }
-        else
-        {
-            <a>Ningun Profesional tiene asignada esta Prestacion. </a>
-        }
-    }
 </div>
+
 <div style="margin-top:20px;">
-    <a asp-action="Edit" asp-route-id="@Model.Id">Modificar</a> |
     <a asp-action="Index">Regresar a Prestaciones</a>
 </div>

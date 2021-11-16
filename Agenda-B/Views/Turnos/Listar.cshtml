@@ -23,6 +23,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Confirmado)
             </th>
+            <th>
+                @Alias.Acciones
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -48,14 +51,13 @@
                     @Html.DisplayFor(modelItem => item.Confirmado)
                 </td>
                 <td>
-                    @if (item.Confirmado && (item.Fecha - DateTime.Now.AddHours(Constantes.HORAS_PERMITIDAS_CANCELAR)).TotalHours > 0)
-                {
-                    <a class="btn btn-sm btn-outline-danger" role="button" asp-controller="Turnos" asp-action="Cancelar" asp-route-id="@item.Id">Cancelar</a>
-                }
-                @*else
-                {
-                    <a class="btn btn-sm btn-outline-success" role="button" asp-controller="Turnos" asp-action="Confirmar" asp-route-id="@item.Id">Confirmar</a>
-                }*@
+                    @if ((this.User.IsInRole(Constantes.ROL_NOMBRE_ADMIN) && item.Confirmado) || (this.User.IsInRole(Constantes.ROL_NOMBRE_PACIENTE) &&  item.TurnoCancelable))
+                    {
+                        <a class="btn btn-sm btn-outline-danger" role="button" asp-controller="Turnos" asp-action="Cancelar" asp-route-id="@item.Id">Cancelar</a>
+                    }else if ((this.User.IsInRole(Constantes.ROL_NOMBRE_PROFESIONAL) || this.User.IsInRole(Constantes.ROL_NOMBRE_ADMIN)) && !item.Confirmado)
+                    {
+                        <a class="btn btn-sm btn-outline-success" role="button" asp-controller="Turnos" asp-action="Confirmar" asp-route-id="@item.Id">Confirmar</a>
+                    }
                 </td>
             </tr>
         }

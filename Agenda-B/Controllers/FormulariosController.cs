@@ -80,7 +80,7 @@ namespace Agenda_B.Controllers
             return View(formulario);
         }
 
-        [Authorize]
+        [Authorize(Roles= Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,13 +97,11 @@ namespace Agenda_B.Controllers
             return View(formulario);
         }
 
-        // POST: Formularios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Email,Nombre,Apellido,Leido,Titulo,Mensaje,UsuarioId")] Formulario formulario)
         {
             if (id != formulario.Id)
@@ -135,39 +133,27 @@ namespace Agenda_B.Controllers
             return View(formulario);
         }
 
-        // GET: Formularios/Delete/5
-        [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        [Authorize(Roles = Constantes.ROL_NOMBRE_ADMIN)]
+        public  IActionResult Leer(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var formulario = await _context.Formularios
-                .Include(f => f.Paciente)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (formulario == null)
+            try
             {
-                return NotFound();
+                Formulario formulario = _context.Formularios.Find(id);
+                formulario.Leido = true;
+                _context.Update(formulario);
+                _context.SaveChanges();
             }
-
-            return View(formulario);
-        }
-
-        // POST: Formularios/Delete/5
-        [Authorize]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-      
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var formulario = await _context.Formularios.FindAsync(id);
-            _context.Formularios.Remove(formulario);
-            await _context.SaveChangesAsync();
+            catch (DbUpdateConcurrencyException)
+            {
+                    return NotFound();
+            }
             return RedirectToAction(nameof(Index));
         }
-
         private bool FormularioExists(int id)
         {
             return _context.Formularios.Any(e => e.Id == id);

@@ -81,7 +81,7 @@ namespace Agenda_B.Controllers
             return View(registracionModel);
         }
 
-        public ActionResult IniciarSesion(string returnurl)
+        public ActionResult IniciarSesion()
         {
 
             return View();

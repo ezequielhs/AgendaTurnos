@@ -20,14 +20,16 @@ namespace Agenda_B.Helpers
         public const String Email = "Correo Electrónico";
         public const String Password = "Contraseña";
         public const String DescripcionCancelacion = "Motivo de Cancelación";
-        public const String HoraInicio = "Hora de Inicio";
-        public const String HoraFin = "Hora de Finalización";
+        public const String HoraInicio = "Entrada";
+        public const String HoraFin = "Salida";
         public const String CodigoPostal = "Código Postal";
         public const String ObraSocial = "Obra Social";
         public const String Rol = "Roles";
         public const String FechaTurno = "Fecha del turno";
         public const String FechaAlta = "Creado el";
         public const String VolverAlInicio = "Volver al inicio";
-
+        public const String Sueldo = "Sueldo a percibir";
+        public const String TurnosTomados = "Turnos tomados en el mes";
+        public const String Acciones = "Acciones";
     }
 }
