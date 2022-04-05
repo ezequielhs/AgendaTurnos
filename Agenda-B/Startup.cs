@@ -75,6 +75,8 @@ namespace Agenda_B
 
             using (var servicescope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
+                var dbContext = servicescope.ServiceProvider.GetService<AgendaContext>();
+                dbContext.Database.EnsureCreated();
                 servicescope.ServiceProvider.GetService<Seeder>().Seed();
             }
 

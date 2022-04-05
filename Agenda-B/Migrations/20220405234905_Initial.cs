@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Agenda_B.Migrations
 {
-    public partial class pacientenullableformulario : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,6 +15,7 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "DescripcionCancelacion",
                 table: "Turnos",
+                type: "nvarchar(250)",
                 maxLength: 250,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -23,6 +26,7 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<int>(
                 name: "PacienteId",
                 table: "Formularios",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
@@ -30,8 +34,10 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Nombre",
                 table: "Formularios",
+                type: "nvarchar(25)",
                 maxLength: 25,
                 nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(25)",
                 oldMaxLength: 25,
@@ -40,6 +46,7 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Mensaje",
                 table: "Formularios",
+                type: "nvarchar(250)",
                 maxLength: 250,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -49,7 +56,9 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
                 table: "Formularios",
+                type: "nvarchar(max)",
                 nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -57,8 +66,10 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Apellido",
                 table: "Formularios",
+                type: "nvarchar(25)",
                 maxLength: 25,
                 nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(25)",
                 oldMaxLength: 25,
@@ -67,6 +78,7 @@ namespace Agenda_B.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Numero",
                 table: "Direcciones",
+                type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(5)",
@@ -77,8 +89,7 @@ namespace Agenda_B.Migrations
                 table: "Formularios",
                 column: "PacienteId",
                 principalTable: "Personas",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -94,6 +105,7 @@ namespace Agenda_B.Migrations
                 maxLength: 500,
                 nullable: true,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(250)",
                 oldMaxLength: 250,
                 oldNullable: true);
 
@@ -102,7 +114,9 @@ namespace Agenda_B.Migrations
                 table: "Formularios",
                 type: "int",
                 nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
@@ -112,6 +126,7 @@ namespace Agenda_B.Migrations
                 maxLength: 25,
                 nullable: true,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(25)",
                 oldMaxLength: 25);
 
             migrationBuilder.AlterColumn<string>(
@@ -121,6 +136,7 @@ namespace Agenda_B.Migrations
                 maxLength: 500,
                 nullable: false,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(250)",
                 oldMaxLength: 250);
 
             migrationBuilder.AlterColumn<string>(
@@ -128,7 +144,8 @@ namespace Agenda_B.Migrations
                 table: "Formularios",
                 type: "nvarchar(max)",
                 nullable: true,
-                oldClrType: typeof(string));
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Apellido",
@@ -137,6 +154,7 @@ namespace Agenda_B.Migrations
                 maxLength: 25,
                 nullable: true,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(25)",
                 oldMaxLength: 25);
 
             migrationBuilder.AlterColumn<string>(
@@ -145,7 +163,8 @@ namespace Agenda_B.Migrations
                 type: "nvarchar(5)",
                 maxLength: 5,
                 nullable: false,
-                oldClrType: typeof(string));
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Formularios_Personas_PacienteId",
