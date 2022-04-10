@@ -17,31 +17,31 @@ namespace Agenda_B.Models
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [DataType(DataType.EmailAddress, ErrorMessage = MsjsError.ErrNoValido)]
         [Display(Name = Alias.Email)]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Apellido { get; set; }
+        public string Apellido { get; set; }
 
         public Boolean Leido { get; set; } = false;
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax3, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Titulo { get; set; }
+        public string Titulo { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax4, MinimumLength = Restricciones.StrMin2, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Mensaje { get; set; }
+        public string Mensaje { get; set; }
 
         [Display(Name = Alias.PacienteId)]
         public int? PacienteId { get; set; }
 
         public Paciente Paciente { get; set; }
-        public String NombreCompleto
+        public string NombreCompleto
         {
             get
             {

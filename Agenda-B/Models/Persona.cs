@@ -12,21 +12,21 @@ namespace Agenda_B.Models
     {
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Apellido { get; set; }
+        public string Apellido { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMaxDoc, MinimumLength = Restricciones.StrMinDoc, ErrorMessage = MsjsError.ErrMinMax)]
         [Display(Name = Alias.DNI)]
-        public String DNI { get; set; }
+        public string DNI { get; set; }
 
         [Required(ErrorMessage =MsjsError.ErrRequired)]
         [DataType(DataType.EmailAddress, ErrorMessage = MsjsError.ErrNoValido)]
         [Display(Name = Alias.Email)]
-        public override String Email { 
+        public override string Email { 
             get { return base.Email;}
             set { base.Email = value;} }
 
@@ -34,12 +34,12 @@ namespace Agenda_B.Models
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [MinLength(Restricciones.StrMin4, ErrorMessage = MsjsError.ErrMinimo)]
-        public String Telefono { get; set; }
+        public string Telefono { get; set; }
 
         [Display(Name = Alias.FechaAlta)]
         public DateTime FechaAlta { get; set; } = DateTime.Now;
 
-        public String NombreCompleto{ get {
+        public string NombreCompleto{ get {
                 return Apellido + ", " + Nombre;
             }
         }

@@ -13,10 +13,10 @@ namespace Agenda_B.Models
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin2, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Nombre { get; set; }
+        public string Nombre { get; set; }
         
         [MaxLength(Restricciones.StrMax3, ErrorMessage = MsjsError.ErrMaximo)]
-        public String Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [DisplayFormat(DataFormatString = @"{0:hh\:mm\:ss}", ApplyFormatInEditMode = true)]

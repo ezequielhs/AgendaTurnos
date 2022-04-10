@@ -31,7 +31,7 @@ namespace Agenda_B.Models
 
         [MaxLength(Restricciones.StrMax4, ErrorMessage = MsjsError.ErrMaximo)]
         [Display(Name = Alias.DescripcionCancelacion)]
-        public String DescripcionCancelacion { get; set; }
+        public string DescripcionCancelacion { get; set; }
         
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [Display(Name = Alias.PacienteId)]
@@ -42,7 +42,7 @@ namespace Agenda_B.Models
         public int ProfesionalId { get; set; }
 
 
-        public String TurnoCompleto(Persona persona)
+        public string TurnoCompleto(Persona persona)
         {
             return Fecha.ToString() + ", " + persona.NombreCompleto;
         }

@@ -16,30 +16,25 @@ namespace Agenda_B.Models
        
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax3, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Calle { get; set; }
+        public string Calle { get; set; }
        
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         //[StringLength(Restricciones.StrMax1, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
         [Range(Restricciones.StrMin1, Restricciones.StrMax5, ErrorMessage = MsjsError.ErrMaxMin)]
-        public String Numero { get; set; }
+        public string Numero { get; set; }
        
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax1, MinimumLength = Restricciones.StrMin5, ErrorMessage = MsjsError.ErrMinMax)]
         [Display(Name = Alias.CodigoPostal)]
-        public String CodigoPostal { get; set; }
+        public string CodigoPostal { get; set; }
        
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax2, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Localidad { get; set; }
+        public string Localidad { get; set; }
        
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         public Provincia Provincia { get; set; }
 
         public Persona Persona { get; set; }
-
-        public String DireccionCompleta { get {
-                return Provincia + ", " + Localidad + ", " + CodigoPostal + ". " + Calle + " " + Numero;
-            }
-        }
     }
 }

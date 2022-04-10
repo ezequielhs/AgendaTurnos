@@ -285,7 +285,7 @@ namespace Agenda_B.Data
                     Numero = "320",
                     CodigoPostal = "1160",
                     Localidad = "San Telmo",
-                    Provincia = Provincia.CABA,
+                    Provincia = Provincia.CAPITAL_FEDERAL,
                 });
 
                 direcciones.Add(new Direccion

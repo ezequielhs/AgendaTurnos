@@ -11,7 +11,7 @@ namespace Agenda_B.Models
     {
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [StringLength(Restricciones.StrMax1, MinimumLength = Restricciones.StrMin1, ErrorMessage = MsjsError.ErrMinMax)]
-        public String Matricula { get; set; }
+        public string Matricula { get; set; }
 
         [Required(ErrorMessage = MsjsError.ErrRequired)]
         [Display(Name = Alias.PrestacionId)]

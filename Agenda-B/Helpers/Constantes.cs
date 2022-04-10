@@ -13,8 +13,6 @@ namespace Agenda_B.Helpers
         public const string ROL_NOMBRE_PROFESIONAL = "Profesional";
         public const string ROL_NOMBRE_PACIENTE = "Paciente";
         public const int DIAS_AUTORIZADOS_TURNO = 7;
-        public const int HORAS_PERMITIDAS_CANCELAR = 24;
-
-        
+        public const int HORAS_PERMITIDAS_CANCELAR = 24;       
     }
 }

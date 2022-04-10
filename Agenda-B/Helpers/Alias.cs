@@ -7,29 +7,29 @@ namespace Agenda_B.Helpers
 {
     public static class Alias
     {
-        public const String PersonaId = "Persona";
-        public const String DireccionId = "Dirección";
-        public const String FormularioId = "Formulario";
-        public const String AdministradorId = "Administrador";
-        public const String PacienteId = "Paciente";
-        public const String PrestacionId = "Prestación";
-        public const String ProfesionalId = "Profesional";
-        public const String TurnoId = "Turno";
-        public const String UsuarioId = "Usuario";
-        public const String DNI = "Documento";
-        public const String Email = "Correo Electrónico";
-        public const String Password = "Contraseña";
-        public const String DescripcionCancelacion = "Motivo de Cancelación";
-        public const String HoraInicio = "Entrada";
-        public const String HoraFin = "Salida";
-        public const String CodigoPostal = "Código Postal";
-        public const String ObraSocial = "Obra Social";
-        public const String Rol = "Roles";
-        public const String FechaTurno = "Fecha del turno";
-        public const String FechaAlta = "Creado el";
-        public const String VolverAlInicio = "Volver al inicio";
-        public const String Sueldo = "Sueldo a percibir";
-        public const String TurnosTomados = "Turnos tomados en el mes";
-        public const String Acciones = "Acciones";
+        public const string PersonaId = "Persona";
+        public const string DireccionId = "Dirección";
+        public const string FormularioId = "Formulario";
+        public const string AdministradorId = "Administrador";
+        public const string PacienteId = "Paciente";
+        public const string PrestacionId = "Prestación";
+        public const string ProfesionalId = "Profesional";
+        public const string TurnoId = "Turno";
+        public const string UsuarioId = "Usuario";
+        public const string DNI = "Documento";
+        public const string Email = "Correo Electrónico";
+        public const string Password = "Contraseña";
+        public const string DescripcionCancelacion = "Motivo de Cancelación";
+        public const string HoraInicio = "Entrada";
+        public const string HoraFin = "Salida";
+        public const string CodigoPostal = "Código Postal";
+        public const string ObraSocial = "Obra Social";
+        public const string Rol = "Roles";
+        public const string FechaTurno = "Fecha del turno";
+        public const string FechaAlta = "Creado el";
+        public const string VolverAlInicio = "Volver al inicio";
+        public const string Sueldo = "Sueldo a percibir";
+        public const string TurnosTomados = "Turnos tomados en el mes";
+        public const string Acciones = "Acciones";
     }
 }

@@ -14,7 +14,6 @@ namespace Agenda_B.Helpers
         public const string ErrNoValido = "El campo {0} no es válido";
         public const string ErrMinMax = "El campo {0} necesita un minimo de {2} caracteres y un maximo de {1}";
         public const string ErrMaxMin = "El campo {0} necesita un minimo de {1} caracteres y un maximo de {2}";
-        public const string ErrNoIguales = "Las contraseñas no son iguales.";
-        
+        public const string ErrNoIguales = "Las contraseñas no son iguales.";     
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model Agenda_B.Models.Direccion
 
 <address>
-    @Model.DireccionCompleta
+    @Html.DisplayFor(model => model.Provincia), @Html.DisplayFor(model => model.Localidad), @Html.DisplayFor(model => model.CodigoPostal). @Html.DisplayFor(model => model.Calle) @Html.DisplayFor(model => model.Numero)
 </address>
 <div>
     <a asp-controller="Direcciones" asp-action="Edit" asp-route-id="@Model.Id">Modificar direccion</a>
