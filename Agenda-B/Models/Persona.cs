@@ -23,7 +23,7 @@ namespace Agenda_B.Models
         [Display(Name = Alias.DNI)]
         public string DNI { get; set; }
 
-        [Required(ErrorMessage =MsjsError.ErrRequired)]
+        [Required(ErrorMessage = MsjsError.ErrRequired)]
         [DataType(DataType.EmailAddress, ErrorMessage = MsjsError.ErrNoValido)]
         [Display(Name = Alias.Email)]
         public override string Email { 
